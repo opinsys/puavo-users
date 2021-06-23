@@ -121,16 +121,19 @@ EOF
 
           // make the above trick effective
           sh 'systemctl daemon-reload'
+          sh 'ps aeuwx | grep CUCUMBER | grep -v grep || true'
 
           // Test installation can be done and works
           // (as a side-effect restarts puavo-rest and puavo-web).
           sh 'script/test-install.sh'
+          sh 'ps aeuwx | grep CUCUMBER | grep -v grep || true'
 
           // Force organisations refresh...
           sh '''
             curl --noproxy localhost -d foo=bar \
               http://localhost:9292/v3/refresh_organisations
           '''
+          sh 'ps aeuwx | grep CUCUMBER | grep -v grep || true'
 
           // Execute rest tests first as they are more low level
           sh '''

@@ -121,12 +121,12 @@ EOF
 
           // make the above trick effective
           sh 'systemctl daemon-reload'
-          // XXX apparently this is needed...
-          sh 'sleep 5'
 
           // Test installation can be done and works
           // (as a side-effect restarts puavo-rest and puavo-web).
           sh 'script/test-install.sh'
+          // XXX apparently this is needed...
+          sh 'sleep 5'
 
           // Force organisations refresh...
           sh '''

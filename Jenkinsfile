@@ -127,16 +127,12 @@ EOF
           // Test installation can be done and works
           // (as a side-effect restarts puavo-rest and puavo-web).
           sh 'script/test-install.sh'
-          // XXX apparently this is needed...
-          sh 'sleep 5'
 
           // Force organisations refresh...
           sh '''
             curl --noproxy localhost -d foo=bar \
               http://localhost:9292/v3/refresh_organisations
           '''
-          // XXX apparently this is needed...
-          sh 'sleep 5'
 
           // Execute rest tests first as they are more low level
           sh '''
